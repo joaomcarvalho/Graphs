@@ -81,6 +81,5 @@ public class GraphsTestSuite {
 		}
 		System.out.println(GraphUtils.graphRepresentation(graph, "AM"));
 	}
-
-
+	
 }
