@@ -13,6 +13,9 @@ import java.net.URL;
 public class GraphsTestSuite {
 
 	Graph graph;
+	
+	
+	
 	@Test
 	public void readGraph(){
 		try{
