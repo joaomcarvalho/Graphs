@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.net.URL;
 
 public class GraphsTestSuite {
@@ -16,18 +17,27 @@ public class GraphsTestSuite {
 	
 	
 	
-	@Test
-	public void readGraph(){
-		try{
+//	@Test
+//	public void readGraph(){
+//		try{
+//
+//			int [][] output =  {{0,1,0,0,1}, {1,0,0,0,1}, {0,0,0,0,1}, {0,0,0,0,1}, {1,1,1,1,0}};
+//            graph = GraphUtils.readGraph("/home/severino/Documents/ufcg/Graphs/GraphsAPI/resources/input.txt");
+//            Assert.assertArrayEquals(output, graph.getAdjacencyMatrix());
+//		} catch (Exception e){
+//			e.printStackTrace();
+//		}
+//	}
 
-			int [][] output =  {{0,1,0,0,1}, {1,0,0,0,1}, {0,0,0,0,1}, {0,0,0,0,1}, {1,1,1,1,0}};
-            graph = GraphUtils.readGraph("/home/severino/Documents/ufcg/Graphs/GraphsAPI/resources/input.txt");
-            Assert.assertArrayEquals(output, graph.getAdjacencyMatrix());
-		} catch (Exception e){
+	@Test
+	public void graphRepresentation() {
+		try {
+			graph = GraphUtils.readGraph("/home/joao/Documentos/ATG/GraphsAPI/resources/input.txt");
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println(GraphUtils.graphRepresentation(graph, "AL"));
 	}
-
 
 
 

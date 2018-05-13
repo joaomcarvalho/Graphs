@@ -47,7 +47,7 @@ public class Graph {
     public boolean hasEdge(int i, int j) {
 	    return this.adjacencyMatrix[i][j] >= DEFAULT_WEIGHT;
     }
-    
+     
 
 	public void BFS(int v) {
 	    boolean visited[] = new boolean[adjacencyMatrix.length];

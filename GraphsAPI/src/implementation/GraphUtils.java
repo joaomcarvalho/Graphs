@@ -32,6 +32,35 @@ public class GraphUtils {
         }
         return graph;
     }
+    
+    public static String graphRepresentation (Graph graph, String type) {
+    	if(type.equals("AM")) {
+    		String matrixRepresentation = "";
+    		for(int i = 0; i < graph.getNumVertices(); i ++) {
+    			String line = "";
+    			for(int j = 0; j < graph.getNumVertices(); j++) {
+    				line += graph.getAdjacencyMatrix()[i][j] + " ";
+    			}
+    			matrixRepresentation += line + "\n";
+    		}
+    		return matrixRepresentation;
+    	}
+    	else if(type.equals("AL")) {
+    		String alRep = "";
+    		for(int k = 0; k < graph.getNumVertices(); k++){
+    			String line = "";
+    			for (int l = 0; l < graph.getNumVertices(); l++) {
+    				if(graph.getAdjacencyMatrix()[k][l] != 0) {
+    					line += (l+1) + " ";
+    				}
+    				
+    			}
+    			alRep += line + "\n";
+    		}
+    		return alRep;
+    	}
+    	return "Invalid Type!";
+    }
 
 
     public static int getVertexNumber (Graph gragh){
