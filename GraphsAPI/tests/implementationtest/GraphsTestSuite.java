@@ -88,6 +88,7 @@ public class GraphsTestSuite {
 			e.printStackTrace();
 		}
 	}
+	
 	@Test
 	public void graphRepresentation() {
 		try {
@@ -97,5 +98,21 @@ public class GraphsTestSuite {
 		}
 		System.out.println(GraphUtils.graphRepresentation(graph, "AM"));
 	}
+	
+	@Test
+	public void getMeanEdge() {
+		try {
+            
+			graph = GraphUtils.readGraph("resources/input.txt");
+            
+			Assert.assertEquals(2.0, GraphUtils.getMeanEdge(graph), 0.01);
+			
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	}
+
+	
 	
 }

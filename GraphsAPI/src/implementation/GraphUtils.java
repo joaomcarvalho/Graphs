@@ -129,6 +129,11 @@ public class GraphUtils {
     	Double edgeNumber = links > 0.0 ? ((links / 2) + loops) :  loops;
     	return edgeNumber.intValue();
     }
-
-
+    
+    public static float getMeanEdge(Graph graph) {
+    	
+    	float meanEdge = ( getEdgeNumber(graph) * 2 ) / getVertexNumber(graph);
+    	
+    	return meanEdge;
+    }
 }
