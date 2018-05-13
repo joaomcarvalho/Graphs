@@ -31,6 +31,7 @@ public class GraphUtils {
             graph.addEdge(i, j);
             graph.addEdge(j, i);
         }
+        br.close();
         return graph;
     }
     
@@ -41,7 +42,7 @@ public class GraphUtils {
     		for(int i = 0; i < graph.getNumVertices(); i ++) {
     			String line = "";
     			for(int j = 0; j < graph.getNumVertices(); j++) {
-    				line += graph.getAdjacencyMatrix()[i][j] + " ";
+    				line += getValue(graph.getAdjacencyMatrix()[i][j]) + " ";
     			}
     			matrixRepresentation += (i+1) + " " + line + "\n";
     		}
@@ -52,7 +53,7 @@ public class GraphUtils {
     		for(int k = 0; k < graph.getNumVertices(); k++){
     			String line = "";
     			for (int l = 0; l < graph.getNumVertices(); l++) {
-    				if(graph.getAdjacencyMatrix()[k][l] != 0) {
+    				if(graph.getAdjacencyMatrix()[k][l] != 0.0) {
     					line += (l+1) + " ";
     				}
     				
@@ -62,6 +63,15 @@ public class GraphUtils {
     		return alRep;
     	}
     	return "Invalid Type!";
+    }
+    
+    private static String getValue(double x) {
+    	double y = Math.floor(x);
+    	double z = Math.ceil(x);
+    	if(y < x && z > x) {
+    		return x + "";
+    	}
+    	return (int) x + "";
     }
     
     private static String putFirstLine(int size) {
@@ -78,6 +88,24 @@ public class GraphUtils {
 
         return gragh.getNumVertices();
 
+    }
+    
+    public static int getEdgeNumber(Graph graph) {
+    	double links = 0.;
+    	double loops = 0.;
+    	int verticesNum = graph.getNumVertices();
+    	double[][] adjacencyMatrix = graph.getAdjacencyMatrix();
+    	for(int i = 0; i < verticesNum; i++) {
+    		for(int j = 0; j < verticesNum; j++) {
+    			if(i == j) {
+    				loops += adjacencyMatrix[i][j] != 0.0 ? 1.0 : 0.0;
+    			} else {
+    				links += adjacencyMatrix[i][j] != 0.0 ? 1.0 : 0.0;
+    			}
+    		}
+    	}
+    	Double edgeNumber = links > 0.0 ? ((links / 2) + loops) :  loops;
+    	return edgeNumber.intValue();
     }
 
 
