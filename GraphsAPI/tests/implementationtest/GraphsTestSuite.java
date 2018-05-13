@@ -18,7 +18,7 @@ public class GraphsTestSuite {
 
 			graph = GraphUtils.readGraph("/home/severino/Documents/ufcg/Graphs/GraphsAPI/resources/input.txt");
 
-			System.out.println(graph);
+			System.out.println(graph.toString());
 		} catch (Exception e){
 			e.printStackTrace();
 		}

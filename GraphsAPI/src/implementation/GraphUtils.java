@@ -28,6 +28,7 @@ public class GraphUtils {
             int i = Integer.parseInt(values[0]);
             int j = Integer.parseInt(values[1]);
             graph.addEdge(i, j);
+            graph.addEdge(j, i);
         }
         return graph;
     }

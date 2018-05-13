@@ -46,5 +46,26 @@ public class Graph {
     public boolean hasEdge(int i, int j) {
 	    return this.adjacencyMatrix[i][j] >= DEFAULT_WEIGHT;
     }
+
+    public String toString(){
+		String out = "";
+
+		for(int i = 0; i < adjacencyMatrix.length; i++){
+			out += lineToString(adjacencyMatrix[i]);
+			out += "\n";
+		}
+		return out;
+	}
+
+	private String lineToString(int[] line) {
+
+		String out = "";
+		for(int i = 0; i < line.length; i++){
+			out += line[i];
+			out += "\t";
+		}
+		return out;
+
+	}
 	
 }

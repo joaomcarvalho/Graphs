@@ -1,9 +1,9 @@
 package implementationtest;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import implementation.GraphAlgorithms;
 
