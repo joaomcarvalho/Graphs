@@ -28,7 +28,23 @@ public class GraphsTestSuite {
 		}
 	}
 	
-
+	@Test
+	public void readWeightedGraph() {
+		try {
+			double [][] output = {
+					{0.0, 0.1, 0.0, 0.0, 1.0},
+					{0.1, 0.0, 0.0, 0.0, 0.2},
+					{0.0, 0.0, 0.0, -9.5, 5.0},
+					{0.0, 0.0, -9.5, 0.0, 2.3},
+					{1.0, 0.2, 5.0, 2.3, 0.0}
+			};
+			graph = GraphUtils.readWeightedGraph("resources/inputWithWeight.txt");
+            Assert.assertArrayEquals(output, graph.getAdjacencyMatrix());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Test
 	public void getEdgeNumber() {
 		try {
