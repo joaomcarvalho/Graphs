@@ -9,12 +9,8 @@ public class GraphAlgorithms {
 	
 	private Graph graph;
 	
-	public GraphAlgorithms (String path) {
-		try {
-			this.graph = GraphUtils.readGraph(path);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public GraphAlgorithms (int v) {
+		this.graph = new Graph(v);
 		
 	}
 
@@ -25,7 +21,7 @@ public class GraphAlgorithms {
 	    queue.add(v);
 	    while(queue.size()!=0) {
 	        int x = queue.remove();
-	        System.out.print(x+" ");
+	        System.out.print(x + " ");
 	        for (int i=1; i <= graph.getAdjacencyMatrix().length; i++) 
 	            if((graph.getAdjacencyMatrix()[x][i] == 1 && (!visited[i]))){
 	              queue.add(i);
