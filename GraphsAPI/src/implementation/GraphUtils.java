@@ -19,6 +19,9 @@ public class GraphUtils {
 
         String line = br.readLine();
         String[] values = line.trim().split(DELIMITER);
+        for(int i=0; i< values.length; i++) {
+        	System.out.println(values[i]);
+        }
         int v = Integer.parseInt(values[0]);
         Graph graph = new Graph(v);
 
@@ -30,6 +33,7 @@ public class GraphUtils {
             graph.addEdge(i, j);
             graph.addEdge(j, i);
         }
+        br.close();
         return graph;
     }
 
@@ -38,6 +42,24 @@ public class GraphUtils {
 
         return gragh.getNumVertices();
 
+    }
+    
+    public static int getEdgeNumber(Graph graph) {
+    	Double links = 0.;
+    	Double loops = 0.;
+    	int verticesNum = graph.getNumVertices();
+    	Double[][] adjacencyMatrix = graph.getAdjacencyMatrix();
+    	for(int i = 0; i < verticesNum; i++) {
+    		for(int j = 0; j < verticesNum; j++) {
+    			if(i == j) {
+    				loops += adjacencyMatrix[i][j] != 0.0 ? 1.0 : 0.0;
+    			} else {
+    				links += adjacencyMatrix[i][j] != 0.0 ? 1.0 : 0.0;
+    			}
+    		}
+    	}
+    	Double edgeNumber = links > 0.0 ? ((links / 2) + loops) :  loops;
+    	return edgeNumber.intValue();
     }
 
 

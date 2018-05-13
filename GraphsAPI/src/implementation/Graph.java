@@ -10,20 +10,21 @@ import java.util.LinkedList;
  */
 public class Graph {
 	
-	private int[][] adjacencyMatrix;
+	private Double[][] adjacencyMatrix;
 	private int numVertices;
-	private static final int DEFAULT_WEIGHT = 1;
+	private static final Double DEFAULT_WEIGHT = 1.0;
+	private static final Double NO_EDGE = 0.0;
 	
 	public Graph(int v) {
 		this.numVertices = v;
-		this.adjacencyMatrix = new int[numVertices][numVertices];
+		this.adjacencyMatrix = new Double[numVertices][numVertices];
 	}
 
-	public int[][] getAdjacencyMatrix() {
-		return adjacencyMatrix;
+	public Double[][] getAdjacencyMatrix() {
+		return this.adjacencyMatrix;
 	}
 
-	public void setAdjacencyMatrix(int[][] adjacencyMatrix) {
+	public void setAdjacencyMatrix(Double[][] adjacencyMatrix) {
 		this.adjacencyMatrix = adjacencyMatrix;
 	}
 
@@ -38,14 +39,17 @@ public class Graph {
 	public void addEdge(int i, int j){
 	    this.adjacencyMatrix[i-1][j-1] = DEFAULT_WEIGHT;
     }
-
+	
+	public void addEdge(int i, int j, Double weight) {
+		this.adjacencyMatrix[i-1][j-1] = weight;
+	}
 
     public void removeEdge(int i, int j) {
-        this.adjacencyMatrix[i-1][j-1] = 0;
+        this.adjacencyMatrix[i-1][j-1] = 0.0;
     }
 
     public boolean hasEdge(int i, int j) {
-	    return this.adjacencyMatrix[i][j] >= DEFAULT_WEIGHT;
+	    return this.adjacencyMatrix[i][j] != NO_EDGE;
     }
     
 
@@ -58,7 +62,7 @@ public class Graph {
 	        int x = queue.remove();
 	        System.out.print(x + " ");
 	        for (int i=1; i <= adjacencyMatrix.length; i++) 
-	            if((adjacencyMatrix[x][i] == 1 && (!visited[i]))){
+	            if((adjacencyMatrix[x][i] != NO_EDGE && (!visited[i]))){
 	              queue.add(i);
 	              visited[i] = true;
 	             }
@@ -75,7 +79,7 @@ public class Graph {
 		return out;
 	}
 
-	private String lineToString(int[] line) {
+	private String lineToString(Number[] line) {
 
 		String out = "";
 		for(int i = 0; i < line.length; i++){

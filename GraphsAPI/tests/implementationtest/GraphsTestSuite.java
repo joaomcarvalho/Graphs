@@ -20,15 +20,55 @@ public class GraphsTestSuite {
 	public void readGraph(){
 		try{
 
-			int [][] output =  {{0,1,0,0,1}, {1,0,0,0,1}, {0,0,0,0,1}, {0,0,0,0,1}, {1,1,1,1,0}};
-            graph = GraphUtils.readGraph("/home/severino/Documents/ufcg/Graphs/GraphsAPI/resources/input.txt");
+			Double [][] output =  {{0.0,1.0,0.0,0.0,1.0}, {1.0,0.0,0.0,0.0,1.0}, {0.0,0.0,0.0,0.0,1.0}, {0.0,0.0,0.0,0.0,1.0}, {1.0,1.0,1.0,1.0,0.0}};
+            graph = GraphUtils.readGraph("resources/input.txt");
             Assert.assertArrayEquals(output, graph.getAdjacencyMatrix());
 		} catch (Exception e){
 			e.printStackTrace();
 		}
 	}
 
-
-
+	@Test
+	public void getEdgeNumber() {
+		try {
+			Double [][] adjacencyMatrix =  {
+					//   1  2  3  4  5
+					{0.,1.,0.,0.,1.}, //1
+					{1.,0.,0.,0.,1.}, //2
+					{0.,0.,0.,0.,1.}, //3
+					{0.,0.,0.,0.,1.}, //4
+					{1.,1.,1.,1.,0.}  //5
+					};
+			
+			Double [][] adjacencyMatrixWithLoops =  {
+				//   1  2  3  4  5
+					{1.,1.,0.,0.,1.}, //1
+					{1.,0.,0.,0.,1.}, //2
+					{0.,0.,1.,0.,1.}, //3
+					{0.,0.,0.,0.,1.}, //4
+					{1.,1.,1.,1.,1.}  //5
+					};
+			
+			Double [][] adjacencyMatrixWithWeight = {
+					{0.0, 0.1, 0.0, 0.0, 1.0},
+					{0.1, 0.0, 0.0, 0.0, 0.2},
+					{0.0, 0.0, 0.0, -9.5, 5.0},
+					{0.0, 0.0, -9.5, 0.0, 2.3},
+					{1.0, 0.2, 5.0, 2.3, 0.0}
+			};
+			Graph graph = new Graph(5);
+			
+			graph.setAdjacencyMatrix(adjacencyMatrix);
+			Assert.assertEquals(GraphUtils.getEdgeNumber(graph), 5);
+			
+			graph.setAdjacencyMatrix(adjacencyMatrixWithLoops);
+			Assert.assertEquals(GraphUtils.getEdgeNumber(graph), 8);
+			
+			graph.setAdjacencyMatrix(adjacencyMatrixWithWeight);
+			Assert.assertEquals(GraphUtils.getEdgeNumber(graph), 6);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }
