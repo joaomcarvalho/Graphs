@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.net.URL;
 
 public class GraphsTestSuite {
@@ -19,19 +20,19 @@ public class GraphsTestSuite {
 	@Test
 	public void readGraph(){
 		try{
-
-			Double [][] output =  {{0.0,1.0,0.0,0.0,1.0}, {1.0,0.0,0.0,0.0,1.0}, {0.0,0.0,0.0,0.0,1.0}, {0.0,0.0,0.0,0.0,1.0}, {1.0,1.0,1.0,1.0,0.0}};
+			double [][] output =  {{0.0,1.0,0.0,0.0,1.0}, {1.0,0.0,0.0,0.0,1.0}, {0.0,0.0,0.0,0.0,1.0}, {0.0,0.0,0.0,0.0,1.0}, {1.0,1.0,1.0,1.0,0.0}};
             graph = GraphUtils.readGraph("resources/input.txt");
             Assert.assertArrayEquals(output, graph.getAdjacencyMatrix());
 		} catch (Exception e){
 			e.printStackTrace();
 		}
 	}
+	
 
 	@Test
 	public void getEdgeNumber() {
 		try {
-			Double [][] adjacencyMatrix =  {
+			double [][] adjacencyMatrix =  {
 					//   1  2  3  4  5
 					{0.,1.,0.,0.,1.}, //1
 					{1.,0.,0.,0.,1.}, //2
@@ -40,7 +41,7 @@ public class GraphsTestSuite {
 					{1.,1.,1.,1.,0.}  //5
 					};
 			
-			Double [][] adjacencyMatrixWithLoops =  {
+			double [][] adjacencyMatrixWithLoops =  {
 				//   1  2  3  4  5
 					{1.,1.,0.,0.,1.}, //1
 					{1.,0.,0.,0.,1.}, //2
@@ -49,13 +50,14 @@ public class GraphsTestSuite {
 					{1.,1.,1.,1.,1.}  //5
 					};
 			
-			Double [][] adjacencyMatrixWithWeight = {
+			double [][] adjacencyMatrixWithWeight = {
 					{0.0, 0.1, 0.0, 0.0, 1.0},
 					{0.1, 0.0, 0.0, 0.0, 0.2},
 					{0.0, 0.0, 0.0, -9.5, 5.0},
 					{0.0, 0.0, -9.5, 0.0, 2.3},
 					{1.0, 0.2, 5.0, 2.3, 0.0}
 			};
+
 			Graph graph = new Graph(5);
 			
 			graph.setAdjacencyMatrix(adjacencyMatrix);
@@ -70,5 +72,15 @@ public class GraphsTestSuite {
 			e.printStackTrace();
 		}
 	}
+	@Test
+	public void graphRepresentation() {
+		try {
+			graph = GraphUtils.readGraph("resources/input.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(GraphUtils.graphRepresentation(graph, "AM"));
+	}
+
 
 }

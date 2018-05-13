@@ -10,21 +10,21 @@ import java.util.LinkedList;
  */
 public class Graph {
 	
-	private Double[][] adjacencyMatrix;
+	private double[][] adjacencyMatrix;
 	private int numVertices;
-	private static final Double DEFAULT_WEIGHT = 1.0;
-	private static final Double NO_EDGE = 0.0;
+	private static final double DEFAULT_WEIGHT = 1.0;
+	private static final double NO_EDGE = 0.0;
 	
 	public Graph(int v) {
 		this.numVertices = v;
-		this.adjacencyMatrix = new Double[numVertices][numVertices];
+		this.adjacencyMatrix = new double[numVertices][numVertices];
 	}
 
-	public Double[][] getAdjacencyMatrix() {
+	public double[][] getAdjacencyMatrix() {
 		return this.adjacencyMatrix;
 	}
 
-	public void setAdjacencyMatrix(Double[][] adjacencyMatrix) {
+	public void setAdjacencyMatrix(double[][] adjacencyMatrix) {
 		this.adjacencyMatrix = adjacencyMatrix;
 	}
 
@@ -79,7 +79,7 @@ public class Graph {
 		return out;
 	}
 
-	private String lineToString(Number[] line) {
+	private String lineToString(double[] line) {
 
 		String out = "";
 		for(int i = 0; i < line.length; i++){
