@@ -64,14 +64,14 @@ public class Graph {
     
 
 	public void BFS(int v) {
-	    boolean visited[] = new boolean[adjacencyMatrix.length];
+	    boolean visited[] = new boolean[adjacencyMatrix.length+1];
 	    LinkedList<Integer> queue = new LinkedList<Integer>();
-	    visited[v-1] = true;
+	    visited[v] = true;
 	    queue.add(v);
-	    while(queue.size()!=0) {
+	    while(!queue.isEmpty()) {
 	        int x = queue.remove();
-	        System.out.print(x + " ");
-	        for (int i=1; i <= adjacencyMatrix.length; i++) 
+	        System.out.print(x+1 + " ");
+	        for (int i=0; i < adjacencyMatrix.length; i++) 
 	            if((adjacencyMatrix[x][i] != NO_EDGE && (!visited[i]))){
 	              queue.add(i);
 	              visited[i] = true;

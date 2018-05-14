@@ -142,6 +142,17 @@ public class GraphsTestSuite {
 		Assert.assertEquals(sL, GraphUtils.graphRepresentation(graph, "AL"));
 	}
 	
+	
+	@Test
+	public void BFS() {
+		try {
+			graph = GraphUtils.readGraph("resources/input.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		graph.BFS(5);
+	}
+	
 	@Test
 	public void getMeanEdge() {
 		try {
