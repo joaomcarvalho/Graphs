@@ -117,6 +117,39 @@ public class GraphsTestSuite {
 	}
 	
 	@Test
+	public void BFS() {
+		try {
+			graph = GraphUtils.readGraph("resources/input.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String output1 = "1-0 -\n" + 
+				"2-1 1\n" + 
+				"3-2 5\n" + 
+				"4-2 5\n" + 
+				"5-1 1\n" + 
+				"";
+		
+		String output2 = "1-1 5\n" + 
+				"2-1 5\n" + 
+				"3-1 5\n" + 
+				"4-1 5\n" + 
+				"5-0 -\n" + 
+				"";
+		
+		String output3 = "1-2 5\n" + 
+				"2-2 5\n" + 
+				"3-0 -\n" + 
+				"4-2 5\n" + 
+				"5-1 3\n" + 
+				"";
+		
+		Assert.assertEquals(output1, GraphUtils.BFS(graph, 1));
+		Assert.assertEquals(output2, GraphUtils.BFS(graph, 5));
+		Assert.assertEquals(output3, GraphUtils.BFS(graph, 3));
+	}
+	
+	@Test
 	public void graphRepresentationWeightedGraph() {
 		try {
 			graph =  GraphUtils.readWeightedGraph("resources/inputWithWeight.txt");
@@ -142,17 +175,7 @@ public class GraphsTestSuite {
 		Assert.assertEquals(sL, GraphUtils.graphRepresentation(graph, "AL"));
 	}
 	
-	
-	@Test
-	public void BFS() {
-		try {
-			graph = GraphUtils.readGraph("resources/input.txt");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		graph.BFS(5);
-	}
-	
+
 	@Test
 	public void getMeanEdge() {
 		try {

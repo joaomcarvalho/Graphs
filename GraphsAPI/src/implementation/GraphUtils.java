@@ -5,6 +5,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectOutputStream.PutField;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * aux entity to work with the graph
@@ -91,6 +93,43 @@ public class GraphUtils {
     		return alRep;
     	}
     	return "Invalid Type!";
+    }
+    
+    public static String BFS(Graph graph, int v) {
+    	int[] level = new int [graph.getAdjacencyMatrix().length];
+    	boolean visited[] = new boolean[graph.getAdjacencyMatrix().length];
+    	LinkedList<Integer> queue = new LinkedList<Integer>();
+    	visited[v-1] = true;
+    	queue.add(v);
+    	level[v-1] = 0;
+    	int[] parents = new int[graph.getAdjacencyMatrix().length];
+    	while(!queue.isEmpty()) {
+    		int x = queue.remove();
+    		for(int i= 0; i < graph.getAdjacencyMatrix().length;i++) {
+    			if((graph.getAdjacencyMatrix()[x-1][i] != 0.0 && (!visited[i]))){
+  	              parents[i] = x;
+  	              level[i] = 1 + level[parents[i]-1];
+    			  queue.add(i+1);
+  	              visited[i] = true;
+    			}
+    		}
+    		
+    	}
+    	return buildBFSOutput("", parents,graph.getAdjacencyMatrix().length,level);
+    }
+    
+    private static String buildBFSOutput(String output, int[] parents,int graphSize,int[]level) {
+    	String line = "";
+    	for(int i = 0; i < graphSize; i++) {
+    		if(parents[i] == 0) {
+    			line = (i+1) + "-" + level[i] + " -" + "\n";
+    		}else {
+    		line = (i+1) + "-" + level[i] + " "  + parents[i] + "\n";
+    		}
+    		output += line;
+    	}
+    return output;
+    	
     }
     
     private static String getValue(double x) {
