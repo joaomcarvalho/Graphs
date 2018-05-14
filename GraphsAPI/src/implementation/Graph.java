@@ -79,6 +79,17 @@ public class Graph {
 	     }	
 	}
 
+	/**
+	 * Returns the shortest path from a source vertex to a target vertex.
+	 *
+	 * @param {int} v1, the source vertex.
+	 * @param {int} v2, the target vertex.
+	 * @return {String} the shortest path between v1 and v2.
+	 */
+	public String shortestPath(int v1, int v2) {
+		return null;
+	}
+
     public String toString(){
 		String out = "";
 
