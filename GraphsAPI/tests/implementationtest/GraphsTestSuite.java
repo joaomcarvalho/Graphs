@@ -217,7 +217,7 @@ public class GraphsTestSuite {
 	public void shortestPath() {
 		try {
 			graph =  GraphUtils.readWeightedGraph("resources/inputWeight2.txt");
-			Assert.assertEquals("[1, 2, 5, 4, 3]", graph.shortestPath(1, 3)); 
+			Assert.assertEquals("[1, 2, 5, 4, 3]", GraphUtils.shortestPath(graph, 1, 3)); 
 			
 		} catch (IOException e) {
 			e.printStackTrace();
