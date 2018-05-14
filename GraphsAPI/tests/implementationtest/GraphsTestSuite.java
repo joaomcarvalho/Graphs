@@ -96,7 +96,50 @@ public class GraphsTestSuite {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(GraphUtils.graphRepresentation(graph, "AM"));
+		
+		String sMatrix = "  1 2 3 4 5\n" + 
+				"1 0 1 0 0 1 \n" + 
+				"2 1 0 0 0 1 \n" + 
+				"3 0 0 0 0 1 \n" + 
+				"4 0 0 0 0 1 \n" + 
+				"5 1 1 1 1 0 \n" + 
+				"";
+		
+		String sL = "1-2 5 \n" +
+				"2-1 5 \n" + 
+				"3-5 \n" + 
+				"4-5 \n" +
+				"5-1 2 3 4 \n";
+		
+		Assert.assertEquals(sMatrix, GraphUtils.graphRepresentation(graph, "AM"));
+		Assert.assertEquals(sL, GraphUtils.graphRepresentation(graph, "AL"));
+
+	}
+	
+	@Test
+	public void graphRepresentationWeightedGraph() {
+		try {
+			graph =  GraphUtils.readWeightedGraph("resources/inputWithWeight.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		String sMatrix = "  1 2 3 4 5\n" + 
+				"1 0 0.1 0 0 1 \n" + 
+				"2 0.1 0 0 0 0.2 \n" + 
+				"3 0 0 0 -9.5 5 \n" + 
+				"4 0 0 -9.5 0 2.3 \n" + 
+				"5 1 0.2 5 2.3 0 \n" +
+				"";
+		
+		String sL = "1-2(0.1) 5(1) \n" + 
+				"2-1(0.1) 5(0.2) \n" + 
+				"3-4(-9.5) 5(5) \n" + 
+				"4-3(-9.5) 5(2.3) \n" + 
+				"5-1(1) 2(0.2) 3(5) 4(2.3) \n";
+		
+		Assert.assertEquals(sMatrix, GraphUtils.graphRepresentation(graph, "AM"));
+		Assert.assertEquals(sL, GraphUtils.graphRepresentation(graph, "AL"));
 	}
 	
 	@Test

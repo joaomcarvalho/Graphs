@@ -54,13 +54,13 @@ public class GraphUtils {
             graph.addEdge(j, i, weight);
         }
         br.close();
+        graph.setWeighted(true);
         return graph;
     }
     
     public static String graphRepresentation (Graph graph, String type) {
     	if(type.equals("AM")) {
-    		String matrixRepresentation = putFirstLine(graph.getNumVertices());
-    		
+    		String matrixRepresentation = putFirstLine(graph.getNumVertices());  		
     		for(int i = 0; i < graph.getNumVertices(); i ++) {
     			String line = "";
     			for(int j = 0; j < graph.getNumVertices(); j++) {
@@ -75,8 +75,14 @@ public class GraphUtils {
     		for(int k = 0; k < graph.getNumVertices(); k++){
     			String line = "";
     			for (int l = 0; l < graph.getNumVertices(); l++) {
-    				if(graph.getAdjacencyMatrix()[k][l] != 0.0) {
-    					line += (l+1) + " ";
+    				if(graph.isWeighted()) {
+    					if(graph.getAdjacencyMatrix()[k][l] != 0.0) {
+    						line += (l+1) + "(" + getValue(graph.getAdjacencyMatrix()[k][l]) + ")" + " ";
+    					}    					
+    				}else {
+    					if(graph.getAdjacencyMatrix()[k][l] != 0.0) {
+        					line += (l+1) + " ";
+        				}
     				}
     				
     			}

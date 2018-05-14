@@ -12,12 +12,22 @@ public class Graph {
 	
 	private double[][] adjacencyMatrix;
 	private int numVertices;
+	private boolean weighted;
 	private static final double DEFAULT_WEIGHT = 1.0;
 	private static final double NO_EDGE = 0.0;
 	
 	public Graph(int v) {
+		this.weighted = false;
 		this.numVertices = v;
 		this.adjacencyMatrix = new double[numVertices][numVertices];
+	}
+
+	public boolean isWeighted() {
+		return weighted;
+	}
+
+	public void setWeighted(boolean weighted) {
+		this.weighted = weighted;
 	}
 
 	public double[][] getAdjacencyMatrix() {
