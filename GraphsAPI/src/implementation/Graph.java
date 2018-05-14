@@ -62,6 +62,60 @@ public class Graph {
 	    return this.adjacencyMatrix[i][j] != NO_EDGE;
     }
     
+    public String shortestPath(int v1, int v2) {
+    		v1 -= 1; v2 -= 1;
+    		
+    		int V = numVertices;
+    		double dist[] = new double[V];
+    		int previous[] = new int[V];
+    		
+    		for (int i = 0; i<V; i++) {
+    			dist[i] = Double.MAX_VALUE;
+    			previous[i] = -1;
+    		}
+    		
+    		dist[v1] = 0;
+    		
+    		for (int i = 0; i<V-1; ++i) {
+    			for (int j=0; j<V; j++) {
+    				for (int k = 0; k<V; ++k) {
+    					if (adjacencyMatrix[j][k] != 0 && dist[k] > dist[j] 
+    							+ adjacencyMatrix[j][k]) {
+    						dist[k] = dist[j] 
+        							+ adjacencyMatrix[j][k];
+    						previous[k] = j;
+    					}
+    				}
+    			}
+    		}
+    		
+    		for (int i = 0; i < V; i++) {
+    			for (int j = 0; j < V; j++) {
+    				if (adjacencyMatrix[i][j] != 0 &&
+    						dist[j] > dist[i]
+    		                           + adjacencyMatrix[i][j])
+    					throw new RuntimeException("The Graph contains negative edge cycle");
+    			}
+    		}
+    		
+    		return buildAnswer(v1, v2, previous);
+    		
+    }
+    
+    private String buildAnswer(int v1, int v2, int[] previous) {
+    		LinkedList<Integer> list = new LinkedList();
+    		int current = v2;
+    		
+    		while (current != v1) {
+    			list.addFirst(current + 1);
+    			if (previous[current] == -1) {
+    				throw new RuntimeException("There is no path between v1 and v2");
+    			}
+    			current = previous[current];
+    		}
+    		list.addFirst(current + 1);
+    		return list.toString();
+    }
 
     public String toString(){
 		String out = "";
