@@ -147,7 +147,30 @@ public class GraphsTestSuite {
 		Assert.assertEquals(output1, GraphUtils.BFS(graph, 1));
 		Assert.assertEquals(output2, GraphUtils.BFS(graph, 5));
 		Assert.assertEquals(output3, GraphUtils.BFS(graph, 3));
+
 	}
+	
+	@Test
+	public void connectedTestFalse() {
+		try {
+			graph = GraphUtils.readGraph("resources/notConnected.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Assert.assertEquals(false, GraphUtils.connected(graph));
+	}
+	
+	@Test
+	public void connectedTestTrue() {
+		try {
+			graph = GraphUtils.readGraph("resources/input.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Assert.assertEquals(true, GraphUtils.connected(graph));
+	}
+	
+	
 	
 	@Test
 	public void graphRepresentationWeightedGraph() {

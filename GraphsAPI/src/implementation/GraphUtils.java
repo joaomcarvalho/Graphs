@@ -95,6 +95,31 @@ public class GraphUtils {
     	return "Invalid Type!";
     }
     
+    public static boolean connected(Graph graph) {
+        boolean visited[] = new boolean[graph.getAdjacencyMatrix().length];
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+        visited[graph.getNumVertices() - 1] = true;
+        queue.add(graph.getNumVertices());
+        while(!queue.isEmpty()) {
+       		int x = queue.remove();
+        	for(int i= 0; i < graph.getAdjacencyMatrix().length;i++) {
+    			if((graph.getAdjacencyMatrix()[x-1][i] != 0.0 && (!visited[i]))){
+    			  queue.add(i+1);
+  	              visited[i] = true;
+    			}
+    		}
+        }
+    	return isConnected(visited);
+    }
+    
+    private static boolean isConnected(boolean[] visited) {
+    	for(int i =0; i < visited.length; i++) {
+    		if(!visited[i])
+    			return false;
+    	}
+    	return true;
+    }
+    
     public static String BFS(Graph graph, int v) {
     	int[] level = new int [graph.getAdjacencyMatrix().length];
     	boolean visited[] = new boolean[graph.getAdjacencyMatrix().length];
@@ -115,6 +140,7 @@ public class GraphUtils {
     		}
     		
     	}
+   
     	return buildBFSOutput("", parents,graph.getAdjacencyMatrix().length,level);
     }
     
