@@ -5,7 +5,7 @@ import java.io.IOException;
 public class GraphAPIInterface {
 	
 	/**
-	* Builds a graph from a .txt file.
+	* Builds a graph from a given .txt file.
 	* @param path to the .txt file
 	* @return A Graph representation from given file.
 	*/
@@ -13,7 +13,7 @@ public class GraphAPIInterface {
 		return GraphUtils.readGraph(path);
 	}
 	/**
-	* Builds a weighted graph from a .txt file.
+	* Builds a weighted graph from a given .txt file.
 	* @param path to the .txt file
 	* @return A Weighted Graph representation from given file.
 	*/
@@ -45,7 +45,7 @@ public class GraphAPIInterface {
 	* tree or graph data structures.
 	* @param Graph object
 	* @param vertice to start the algorithm
-	* @return A String that shows "vertex -level father" of all vertices of the given graph.
+	* @return A String that shows "vertex -level father" of all vertices from the given graph.
 	*/
 	public String BFS(Graph graph, int v) {
 		return GraphUtils.BFS(graph, v);
