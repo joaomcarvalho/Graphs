@@ -74,7 +74,12 @@ public class GraphAPIInterface {
 		return GraphUtils.shortestPath(graph, v1, v2);
 	}
 	
+	/**
+	 * Find the Minimum Spaning Tree in a given graph.
+	 * @param graph
+	 * @return String representing the MST.
+	 */
 	public String mst(Graph graph) {
-		return null;
+		return GraphUtils.mst(graph);
 	}
 }
