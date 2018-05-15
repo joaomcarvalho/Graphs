@@ -208,12 +208,7 @@ public class GraphUtils {
     	return meanEdge;
     }
     
-    /**
-     * Find the shortest path between two vertexes.
-     * @param v1 source vertex
-     * @param v2 target vertex
-     * @return String containing the shortest path from v1 to v2.
-     */
+  
     public static String shortestPath(Graph graph, int v1, int v2) {
     		v1 -= 1; v2 -= 1;
     		
