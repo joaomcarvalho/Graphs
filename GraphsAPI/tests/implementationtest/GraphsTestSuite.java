@@ -223,4 +223,19 @@ public class GraphsTestSuite {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void mst() {
+		try {
+			graph =  GraphUtils.readWeightedGraph("resources/inputWeight2.txt");
+			String ans = "1 - - 0\n" + 
+					"2 - 1 1\n" + 
+					"3 - 4 4\n" + 
+					"4 - 5 3\n" + 
+					"5 - 2 2";
+			Assert.assertEquals(ans, GraphUtils.mst(graph) );
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

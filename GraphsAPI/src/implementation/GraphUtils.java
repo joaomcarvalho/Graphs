@@ -250,6 +250,63 @@ public class GraphUtils {
     		
     }
     
+    public static String mst(Graph graph) {
+		int V = graph.getNumVertices();
+		double adjacencyMatrix[][] = graph.getAdjacencyMatrix();
+		
+    		int previous[] = new int[V];
+    		int level[] = new int[V];
+    		double key[] = new double[V];
+    		boolean vis[] = new boolean[V];
+    		
+    		for (int i=0; i < V; i++) {
+    			key[i] = Integer.MAX_VALUE;
+    			vis[i] = false;
+    		}
+    		previous[0] = -1;
+    		key[0] = 0;
+    		level[0] = 0;
+    		
+    		for (int i = 0; i < V - 1; i++) {
+    			int current = min(key, vis, V);
+    			vis[current] = true;
+    			
+    			for (int j = 0; j < V; j++) {
+    				if(adjacencyMatrix[current][j] != 0 && vis[j] == false
+    						&& adjacencyMatrix[current][j] < key[j]) {
+    					previous[j] = current;
+    					key[j] = adjacencyMatrix[current][j];
+    					level[j] = 1 + level[previous[j]];
+    				}
+    			}
+    		}
+    		return buildAnswerMST(previous, level, V);
+    }
+    
+    private static int min(double key[], boolean vis[], int V) {
+    		double min = Double.MAX_VALUE;
+    		int min_index = -1;
+    		
+    		for (int i = 0; i < V; i++) {
+    			if(vis[i] == false && key[i] < min) {
+    				min = key[i];
+    				min_index = i;
+    			}
+    		}
+    		return min_index;
+    }
+    
+    private static String buildAnswerMST(int[] previous, int[] level, int V) {
+    		String answer = "";
+    		for (int i = 0; i < V; i++) {
+    			answer += (i + 1) + " - " + (previous[i] == -1 ? "-":previous[i] + 1) + " " + level[i];
+    			if (i != V - 1) {
+    				answer += "\n";
+    			}
+    		}
+    		return answer;
+    }
+    
     private static String buildAnswer(int v1, int v2, int[] previous) {
     		LinkedList<Integer> list = new LinkedList();
     		int current = v2;
