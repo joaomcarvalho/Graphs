@@ -117,6 +117,13 @@ public class GraphsTestSuite {
 	}
 	
 	@Test
+	public void graphTest() {
+// 		graph = GraphUtils.readGraph("resources/input.txt");
+// 		Assert.assertEquals(sMatrix, GraphUtils.graphRepresentation(graph, "AM"));
+// 		Assert.assertEquals(sL, GraphUtils.graphRepresentation(graph, "AL"));
+	}
+	
+	@Test
 	public void BFS() {
 		try {
 			graph = GraphUtils.readGraph("resources/input.txt");
